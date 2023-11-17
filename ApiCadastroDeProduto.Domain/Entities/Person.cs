@@ -25,6 +25,8 @@ namespace ApiCadastroDeProduto.Domain.Entities
         {
            
             DomainValidationException.When(id <= 0, "Id deve ser maior que zero");
+            Id = id;
+
             Validation(name, document, phone);
 
         }
