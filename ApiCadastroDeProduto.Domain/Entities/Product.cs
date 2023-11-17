@@ -14,13 +14,16 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public string CodErp { get; private set; }
         public decimal? Price { get; private set; }
 
-        /// <summary> Construtor para adição de uma pessoa  </summary>
+        // Um produto pode estar em  mais de uma compra
+        public ICollection<Purchase> Purchases { get; private set; }
+
+        /// <summary> Construtor para adição de uma produto </summary>
         public Product(string name, string codErp, decimal price)
         {
             Validation(name, codErp, price);
         }
 
-        /// <summary> Construtor para edição de uma pessoa </summary>
+        /// <summary> Construtor para edição de uma produto </summary>
         public Product(int id, string name, string codErp, decimal price)
         {
             DomainValidationException.When(id <= 0, "Id deve ser maior que zero");
@@ -34,7 +37,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
         {
             DomainValidationException.When(string.IsNullOrEmpty(name), "Nome deve ser informado");
             DomainValidationException.When(string.IsNullOrEmpty(codErp), "CodErp deve ser informado");
-            DomainValidationException.When(price < 0, "Preço deve ser informado");
+            DomainValidationException.When(price <= 0, "Preço deve ser informado");
 
             Name = name;
             CodErp = codErp;

@@ -13,6 +13,9 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Phone { get; private set; }
+       
+        // Uma pessoa pode  ter mais de uma compra
+        public ICollection<Purchase> Purchases { get; private set; }
 
         /// <summary> Construtor para adição de uma pessoa  </summary>
         public Person(string name, string document, string phone)
