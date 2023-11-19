@@ -9,37 +9,39 @@ using System.Threading.Tasks;
 
 namespace Api.CadastroDeProduto.Infra.Data.Maps
 {
-    public class PersonMap : IEntityTypeConfiguration<Person>
+    public class ProductMap : IEntityTypeConfiguration<Product>
     {
-        public  void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             //Nome da tabela no banco
-            builder.ToTable("Pessoa");
+            builder.ToTable("Produto");
 
             // Chave primária
             builder.HasKey(x => x.Id);
 
             //Colunas da tabela
 
-             builder.Property(x => x.Id)
-           .HasColumnName("IdPessoa")
-           .UseIdentityColumn();
+            builder.Property(x => x.Id)
+          .HasColumnName("IdProduto")
+          .UseIdentityColumn();
 
-            builder.Property(x => x.Document)
-            .HasColumnName("Documento");
+            builder.Property(x => x.CodErp)
+            .HasColumnName("CodErp");
 
             builder.Property(x => x.Name)
             .HasColumnName("Nome");
 
-            builder.Property(x => x.Phone)
-            .HasColumnName("Celular");
+            builder.Property(x => x.Price)
+            .HasColumnName("Preco");
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
-            // Uma pessoa pode ter uma lista de compras mas uma compra é referentea a uma pessoa
+            // Uma produto pode estar em várias  compras mas uma compra pode ter somente um respectivo produto 
             // 1 pra N
             builder.HasMany(c => c.Purchases)
-                .WithOne(p => p.Person)
-                .HasForeignKey(p => p.PersonId);
+                .WithOne(p => p.Product)
+                .HasForeignKey(p => p.ProductId);
         }
+
+      
     }
 }
