@@ -21,9 +21,9 @@ namespace ApiCadastroDeProduto.Domain.Repositories
         Task<Person> CreateAsync(Person person);
         
         //Editauma Pessoa
-        Task<Person> EditAsync(Person person);
+        Task EditAsync(Person person);
         
         //Deleta uma Pessoa
-        Task<Person> DeleteAsync(Person person);
+        Task DeleteAsync(Person person);
     }
 }

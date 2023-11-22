@@ -23,19 +23,17 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
             await _ConnectionDbContext.SaveChangesAsync();
             return person;
         }
-
-        public async Task<Person> DeleteAsync(Person person)
+                            
+        public async Task DeleteAsync(Person person)
         {
             _ConnectionDbContext.Remove(person);
             await _ConnectionDbContext.SaveChangesAsync();
-            return person;
         }
-
-        public async Task<Person> EditAsync(Person person)
+        public async Task EditAsync(Person person)
         {
             _ConnectionDbContext.Update(person);
             await _ConnectionDbContext.SaveChangesAsync();
-            return  person;
+
         }
 
         public async Task<Person> GetByIdAsync(int id)
@@ -47,5 +45,9 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
         {
             return await _ConnectionDbContext.People.ToListAsync();
         }
+
+       
+
+       
     }
 }
