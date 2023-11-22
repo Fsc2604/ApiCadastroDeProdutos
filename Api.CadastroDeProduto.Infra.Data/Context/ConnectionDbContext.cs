@@ -15,8 +15,10 @@ namespace Api.CadastroDeProduto.Infra.Data.Context
 
         }
         
-        // Indicativo de que a classe Person existe no banco de dados como tabela
+        // Indicativo de que as classes Person Product Purchase existem no banco de dados como tabela
         public DbSet<Person> People { get; set; }
+        public DbSet<Product> Product{ get; set; }
+        public DbSet<Purchase> Purchase{ get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
