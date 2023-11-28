@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Api.CadastroDeProduto.Application.Service
 {
-    // Classe criada para retorno dos serviços  + tratamento de erros de forma genérica 
+    
     public class ResultService
     {
+        //<summary> Classe criada para retorno dos serviços  + tratamento de erros de forma genérica </summary>
         public bool IsSucess { get; set; }
         public string Message { get; set; }
         public ICollection<ErrorValidation> Errors { get; set; }
@@ -42,9 +43,10 @@ namespace Api.CadastroDeProduto.Application.Service
 
     }
 
-    // Tipo genérico para passar vários tipos de retorno
+   
     public class ResultService<T> : ResultService
     {
+        /// <summary>Tipo genérico para passar vários tipos de retorno </summary>
         public T Data { get; set; }
     }
 }
