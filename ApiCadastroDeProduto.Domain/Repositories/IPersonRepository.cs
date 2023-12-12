@@ -14,13 +14,13 @@ namespace ApiCadastroDeProduto.Domain.Repositories
         //Pega Pessoa pelo Id
         Task<Person> GetByIdAsync(int id);
 
-        //Pega uma lista dde Pessoas
+        //Pega uma lista de Pessoas
         Task<ICollection<Person>> GetPeopleAsync();
        
         //Cria uma Pessoa
         Task<Person> CreateAsync(Person person);
         
-        //Editauma Pessoa
+        //Edita uma Pessoa
         Task EditAsync(Person person);
         
         //Deleta uma Pessoa

@@ -21,6 +21,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);
+            Purchases  = new List<Purchase>();
         }
 
         /// <summary> Construtor para edição de uma pessoa </summary>
@@ -31,6 +32,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
             Id = id;
 
             Validation(name, document, phone);
+            Purchases = new List<Purchase>();
 
         }
         /// <summary> Método para validação caso algum atributo esteja vazio < /summary>

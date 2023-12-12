@@ -22,17 +22,17 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             //Colunas da tabela
 
             builder.Property(x => x.Id)
-          .HasColumnName("IdCompra")
+          .HasColumnName("Idcompra")
           .UseIdentityColumn();
 
             builder.Property(x => x.PersonId)
-            .HasColumnName("IdPessoa");
+            .HasColumnName("Idpessoa");
 
             builder.Property(x => x.ProductId)
-            .HasColumnName("IdProduto");
+            .HasColumnName("Idproduto");
 
             builder.Property(x => x.Date)
-            .HasColumnName("DataCompra");
+            .HasColumnName("Datacompra");
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
             // Uma compra só pode ter uma pessoa mas uma pessoa pode ter várias compras

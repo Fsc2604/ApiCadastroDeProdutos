@@ -21,6 +21,8 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public Product(string name, string codErp, decimal price)
         {
             Validation(name, codErp, price);
+            Purchases = new List<Purchase>(); 
+ 
         }
 
         /// <summary> Construtor para edição de uma produto </summary>
@@ -30,6 +32,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
             Id = id;
 
             Validation(name, codErp, price);
+            Purchases = new List<Purchase>();
         }
 
         /// <summary> Método para validação caso algum atributo esteja vazio < /summary>

@@ -22,7 +22,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             //Colunas da tabela
 
              builder.Property(x => x.Id)
-           .HasColumnName("IdPessoa")
+           .HasColumnName("Idpessoa")
            .UseIdentityColumn();
 
             builder.Property(x => x.Document)
