@@ -9,6 +9,12 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
 {
     public interface IPersonService
     {
+        //Criar uma pessoa
         Task<ResultService<PersonDto>> CreateAsync(PersonDto personDTO);
+
+        //Listar todas a pessoas
+        Task<ResultService<ICollection<PersonDto>>> GetAsync();
+        //Listar somente uma pessoa
+        Task<ResultService<PersonDto>> GetByIdAsync(int id);
     }
 }

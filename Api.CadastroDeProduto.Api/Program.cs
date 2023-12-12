@@ -1,4 +1,5 @@
 using Api.CadastroDeProduto.Infra.IoC;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfraStructure(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
+
+//Faz com que atributos nulos nao apaarecam mais
+builder.Services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; });
 
 var app = builder.Build();
 

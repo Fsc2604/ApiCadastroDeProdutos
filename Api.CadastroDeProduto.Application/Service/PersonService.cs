@@ -21,6 +21,8 @@ namespace Api.CadastroDeProduto.Application.Service
             _personRepository = personRepository;
             _mapper = mapper;
         }
+
+        /// <summary> Crindo Pessoa no repositório e convertendo pra dto</summary>
         public async Task<ResultService<PersonDto>> CreateAsync(PersonDto personDTO)
         {
             if(personDTO == null)            
@@ -33,6 +35,23 @@ namespace Api.CadastroDeProduto.Application.Service
             var person = _mapper.Map<Person>(personDTO);
             var data = await _personRepository.CreateAsync(person);
             return ResultService.Ok<PersonDto>(_mapper.Map<PersonDto>(data));
+        }
+
+        /// <summary> Buscando Lista de Pessoas no repositório e convertendo pra dto</summary>
+        public async Task<ResultService<ICollection<PersonDto>>> GetAsync()
+        {
+            var people = await _personRepository.GetPeopleAsync();
+            return ResultService.Ok<ICollection<PersonDto>>(_mapper.Map<ICollection<PersonDto>>(people));
+        }
+
+        /// <summary> Buscando Pessoa no repositório e convertendo pra dto</summary>
+        public async Task<ResultService<PersonDto>> GetByIdAsync(int id)
+        {
+           var person = await _personRepository.GetByIdAsync(id);
+            if (person == null)
+            return ResultService.Fail<PersonDto>("Pessoaa não encontrada!");
+
+            return ResultService.Ok(_mapper.Map<PersonDto>(person));
         }
     }
 }
