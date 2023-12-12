@@ -14,7 +14,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             //Nome da tabela no banco
-            builder.ToTable("Produto");
+            builder.ToTable("produto");
 
             // Chave primária
             builder.HasKey(x => x.Id);
@@ -22,17 +22,17 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             //Colunas da tabela
 
             builder.Property(x => x.Id)
-          .HasColumnName("Idproduto")
+          .HasColumnName("idproduto")
           .UseIdentityColumn();
 
             builder.Property(x => x.CodErp)
-            .HasColumnName("Coderp");
+            .HasColumnName("coderp");
 
             builder.Property(x => x.Name)
-            .HasColumnName("Nome");
+            .HasColumnName("nome");
 
             builder.Property(x => x.Price)
-            .HasColumnName("Preco");
+            .HasColumnName("preco");
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
             // Uma produto pode estar em várias  compras mas uma compra pode ter somente um respectivo produto 

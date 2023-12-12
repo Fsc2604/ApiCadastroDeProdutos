@@ -20,7 +20,7 @@ namespace Api.CadastroDeProduto.Infra.IoC
         /// <summary> Injetando Banco </summary>
         public static IServiceCollection AddInfraStructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ConnectionDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("")));
+            services.AddDbContext<ConnectionDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPersonRepository, PersonRepository>();
             return services;
         }

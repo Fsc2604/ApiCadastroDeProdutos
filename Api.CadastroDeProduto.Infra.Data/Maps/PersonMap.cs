@@ -14,7 +14,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
         public  void Configure(EntityTypeBuilder<Person> builder)
         {
             //Nome da tabela no banco
-            builder.ToTable("Pessoa");
+            builder.ToTable("pessoa");
 
             // Chave primária
             builder.HasKey(x => x.Id);
@@ -22,17 +22,17 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             //Colunas da tabela
 
              builder.Property(x => x.Id)
-           .HasColumnName("Idpessoa")
+           .HasColumnName("idpessoa")
            .UseIdentityColumn();
 
             builder.Property(x => x.Document)
-            .HasColumnName("Documento");
+            .HasColumnName("documento");
 
             builder.Property(x => x.Name)
-            .HasColumnName("Nome");
+            .HasColumnName("nome");
 
             builder.Property(x => x.Phone)
-            .HasColumnName("Celular");
+            .HasColumnName("celular");
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
             // Uma pessoa pode ter uma lista de compras mas uma compra é referentea a uma pessoa
