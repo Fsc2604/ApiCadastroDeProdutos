@@ -12,7 +12,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public int Id { get; private set; }
         public string Name { get; private set; }
         public string CodErp { get; private set; }
-        public decimal? Price { get; private set; }
+        public decimal Price { get; private set; }
 
         // Um produto pode estar em  mais de uma compra
         public ICollection<Purchase> Purchases { get; private set; }

@@ -14,7 +14,14 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
 
         //Listar todas a pessoas
         Task<ResultService<ICollection<PersonDto>>> GetAsync();
+        
         //Listar somente uma pessoa
         Task<ResultService<PersonDto>> GetByIdAsync(int id);
+        
+        //Edita uma pessoa
+        Task<ResultService> UpdateAsync(PersonDto personDTO);
+        
+        //Deleta  uma pessoa
+        Task<ResultService> DeleteAsync(int id);
     }
 }

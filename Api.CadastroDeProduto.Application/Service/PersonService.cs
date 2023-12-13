@@ -22,7 +22,7 @@ namespace Api.CadastroDeProduto.Application.Service
             _mapper = mapper;
         }
 
-        /// <summary> Crindo Pessoa no repositório e convertendo pra dto</summary>
+        /// <summary> Criando Pessoa no repositório e convertendo pra dto</summary>
         public async Task<ResultService<PersonDto>> CreateAsync(PersonDto personDTO)
         {
             if(personDTO == null)            
@@ -36,7 +36,7 @@ namespace Api.CadastroDeProduto.Application.Service
             var data = await _personRepository.CreateAsync(person);
             return ResultService.Ok<PersonDto>(_mapper.Map<PersonDto>(data));
         }
-
+   
         /// <summary> Buscando Lista de Pessoas no repositório e convertendo pra dto</summary>
         public async Task<ResultService<ICollection<PersonDto>>> GetAsync()
         {
@@ -52,6 +52,35 @@ namespace Api.CadastroDeProduto.Application.Service
             return ResultService.Fail<PersonDto>("Pessoaa não encontrada!");
 
             return ResultService.Ok(_mapper.Map<PersonDto>(person));
+        }
+
+        public async Task<ResultService> UpdateAsync(PersonDto personDTO)
+        {
+            if (personDTO == null)
+                return ResultService.Fail("Objeto deve ser informado");
+            
+            var validation = new PersonDtoValidator().Validate(personDTO);
+            if (!validation.IsValid)
+                return ResultService.RequestError("Problemas com a validação dos campos", validation);
+        
+            var person = await _personRepository.GetByIdAsync(personDTO.Id);
+            if (person == null)
+                return ResultService.Fail("Pessoa não encontrada");
+
+            person = _mapper.Map<PersonDto, Person>(personDTO, person);
+            await  _personRepository.EditAsync(person);
+                return ResultService.Ok("Pessoa Editada");
+
+        }
+
+        public async Task<ResultService> DeleteAsync(int id)
+        {
+            var person = await _personRepository.GetByIdAsync(id);
+            if (person == null)
+                return ResultService.Fail("Pessoa não encontrada");
+
+            await _personRepository.DeleteAsync(person);
+            return ResultService.Ok($"Pessoa do id:{id} foi deletada");
         }
     }
 }
