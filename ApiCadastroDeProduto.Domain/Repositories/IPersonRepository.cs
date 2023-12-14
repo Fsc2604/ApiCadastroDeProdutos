@@ -25,5 +25,7 @@ namespace ApiCadastroDeProduto.Domain.Repositories
         
         //Deleta uma Pessoa
         Task DeleteAsync(Person person);
+
+        Task<int> GetIdByDocumentAsync(string document);
     }
 }

@@ -44,6 +44,12 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
             return await _ConnectionDbContext.Product.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        /// <summary> Informa o codErp do produto e retorna o Id. Útil para localizar produtos mais rapido</summary>
+        public async Task<int> GetIdByCodErpAsync(string codErp)
+        {
+            return (await  _ConnectionDbContext.Product.FirstOrDefaultAsync(x=> x.CodErp == codErp))?.Id ?? 0;
+        }
+
         public async Task<ICollection<Product>> GetProductAsync()
         {
             return await _ConnectionDbContext.Product.ToListAsync();

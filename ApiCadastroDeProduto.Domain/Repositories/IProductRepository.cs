@@ -26,6 +26,8 @@ namespace ApiCadastroDeProduto.Domain.Repositories
 
         //Deleta um Produto
         Task DeleteAsync(Product product);
+
+        Task<int> GetIdByCodErpAsync(string codErp);
     }
 }
 
