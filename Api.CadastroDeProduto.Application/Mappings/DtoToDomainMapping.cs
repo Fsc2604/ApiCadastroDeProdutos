@@ -15,6 +15,7 @@ namespace Api.CadastroDeProduto.Application.Mappings
         {
             /// <summary>Classe responsável por fazer a conversão de dto e para entidade </summary>
             CreateMap<PersonDto, Person>();
+            CreateMap<ProductDto, Product>();
         }
     }
 }
