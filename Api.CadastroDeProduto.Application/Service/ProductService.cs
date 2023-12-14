@@ -35,5 +35,20 @@ namespace Api.CadastroDeProduto.Application.Service
             var data = await _productRepository.CreateAsync(product);
             return ResultService.Ok<ProductDto>(_mapper.Map<ProductDto>(data));
         }
+
+        public async Task<ResultService<ICollection<ProductDto>>> GetAsync()
+        {
+            var products = await _productRepository.GetProductAsync();
+            return ResultService.Ok<ICollection<ProductDto>>(_mapper.Map<ICollection<ProductDto>>(products));
+        }
+
+        public async Task<ResultService<ProductDto>> GetByIdAsync(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+            if (product == null)
+                return ResultService.Fail<ProductDto>("Produto  não encontrada!");
+
+            return ResultService.Ok(_mapper.Map<ProductDto>(product));
+        }
     }
 }

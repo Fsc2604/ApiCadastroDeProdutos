@@ -24,5 +24,26 @@ namespace Api.CadastroDeProduto.Api.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAsync()
+        {
+            var result = await _productService.GetAsync();
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetByIdAsync(int id)
+        {
+            var result = await _productService.GetByIdAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
     }
 }

@@ -11,10 +11,16 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
     {
        
        
-            //Criar uma produto
-            Task<ResultService<ProductDto>> CreateAsync(ProductDto productDTO);
+        //Criar uma produto
+        Task<ResultService<ProductDto>> CreateAsync(ProductDto productDTO);
 
-           
-     
+        //Listar todos os produtos
+        Task<ResultService<ICollection<ProductDto>>> GetAsync();
+
+        //Listar somente um produto
+        Task<ResultService<ProductDto>> GetByIdAsync(int id);
+
+
+
     }
 }
