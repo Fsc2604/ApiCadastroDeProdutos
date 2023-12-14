@@ -54,6 +54,7 @@ namespace Api.CadastroDeProduto.Application.Service
             return ResultService.Ok(_mapper.Map<PersonDto>(person));
         }
 
+        /// <summary> Edita uma Pessoa</summary>
         public async Task<ResultService> UpdateAsync(PersonDto personDTO)
         {
             if (personDTO == null)
@@ -73,6 +74,7 @@ namespace Api.CadastroDeProduto.Application.Service
 
         }
 
+        /// <summary> Deleta uma Pessoa</summary>
         public async Task<ResultService> DeleteAsync(int id)
         {
             var person = await _personRepository.GetByIdAsync(id);

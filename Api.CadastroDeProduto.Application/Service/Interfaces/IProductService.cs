@@ -20,6 +20,12 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
         //Listar somente um produto
         Task<ResultService<ProductDto>> GetByIdAsync(int id);
 
+        //Edita um produto
+        Task<ResultService> UpdateAsync(ProductDto productDTO);
+
+        //Deleta  um produto
+        Task<ResultService> RemoveAsync(int id);
+
 
 
     }
