@@ -32,6 +32,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             .HasColumnName("idproduto");
 
             builder.Property(x => x.Date)
+            .HasColumnType("date")
             .HasColumnName("datacompra");
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
