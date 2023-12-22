@@ -3,6 +3,7 @@ using Api.CadastroDeProduto.Application.Service.Interfaces;
 using Api.CadastroDeProduto.Application.Validations;
 using ApiCadastroDeProduto.Domain.Entities;
 using ApiCadastroDeProduto.Domain.Repositories;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Api.CadastroDeProduto.Application.Service
         private readonly IPurchaseRepository _purchaseRepository;
         private readonly IPersonRepository _personRepository;
         private readonly IProductRepository _productRepository;
-
+        private readonly IMapper _mapper;
         public PurchaseService(IPurchaseRepository purchaseRepository, IPersonRepository personRepository , IProductRepository productRepository)
         {
             _personRepository = personRepository;
@@ -41,5 +42,22 @@ namespace Api.CadastroDeProduto.Application.Service
            purchaseDTO.Id = data.Id;
             return ResultService.Ok<PurchaseDto>(purchaseDTO);
         }
+
+        public async Task<ResultService<ICollection<PurchaseDetailDto>>> GetAsync()
+        {
+            var purchases = await _purchaseRepository.GetAllAsync();
+            return ResultService.Ok(_mapper.Map<ICollection<PurchaseDetailDto>>(purchases));
+        }
+
+        public async Task<ResultService<PurchaseDetailDto>> GetByIdAsync(int Id)
+        {
+            var purchase = await _purchaseRepository.GetByIdAsync(Id);
+            if (purchase == null)
+                return ResultService.Fail<PurchaseDetailDto>("Compra não encontrada");
+
+                return ResultService.Ok(_mapper.Map<PurchaseDetailDto>(purchase));
+        }
+
+  
     }
 }

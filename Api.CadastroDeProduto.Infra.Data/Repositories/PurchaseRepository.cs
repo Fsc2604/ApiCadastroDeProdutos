@@ -39,12 +39,35 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
 
         public async Task<ICollection<Purchase>> GetAllAsync()
         {
-            return await _ConnectionDbContext.Purchase.ToListAsync();
+
+            return await _ConnectionDbContext.Purchase
+                 .Include(x => x.Person)
+                 .Include(x => x.Product)
+                 .ToListAsync();
         }
 
         public async Task<Purchase> GetByIdAsync(int id)
         {
-            return await _ConnectionDbContext.Purchase.FirstOrDefaultAsync(x => x.Id == id);
+            return await _ConnectionDbContext.Purchase
+                .Include(x => x.Person)
+                .Include(x => x.Product)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<ICollection<Purchase>> GetByPersonIdAsync(int personId)
+        {
+            return await _ConnectionDbContext.Purchase
+                .Include(x => x.Person)
+                .Include(x => x.Product)
+                .Where(x => x.PersonId == personId).ToListAsync();
+        }
+
+        public async Task<ICollection<Purchase>> GetByProductIdAsync(int productId)
+        {
+            return await _ConnectionDbContext.Purchase
+                .Include(x => x.Product)
+                .Include(x => x.Person)
+                .Where(x => x.ProductId == productId).ToListAsync();
         }
     }
 }
