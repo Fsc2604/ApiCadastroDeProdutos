@@ -32,6 +32,15 @@ namespace ApiCadastroDeProduto.Domain.Entities
        
         }
 
+        public void Edit(int id, int productId, int personId)
+        {
+            DomainValidationException.When(Id <= 0, "Id deve ser maior que zero");
+            Id = id;
+
+            Validation(productId, personId);
+
+        }
+
         /// <summary> Método para validação caso algum atributo esteja vazio < /summary>
         private void Validation(int productId, int personId)
         {

@@ -58,6 +58,35 @@ namespace Api.CadastroDeProduto.Application.Service
                 return ResultService.Ok(_mapper.Map<PurchaseDetailDto>(purchase));
         }
 
-  
+        public async Task<ResultService> RemoveAsync(int id)
+        {
+            var purchase = await _purchaseRepository.GetByIdAsync(id);
+            if (purchase == null)
+                return ResultService.Fail("Produto não encontrado");
+
+            await _purchaseRepository.DeleteAsync(purchase);
+            return ResultService.Ok($"Produto do id:{id} foi deletado");
+        }
+
+        public async Task<ResultService<PurchaseDto>> UpdateAsync(PurchaseDto purchaseDTO)
+        {
+            if (purchaseDTO == null)
+                return ResultService.Fail<PurchaseDto>("Objeto deve ser informado");
+
+            var result = new PurchaseDtoValidator().Validate(purchaseDTO);
+            if (!result.IsValid)
+                return ResultService.RequestError<PurchaseDto>("Problemas com a validação dos campos", result);
+
+            var purchase = await _purchaseRepository.GetByIdAsync(purchaseDTO.Id);
+            if (purchase == null)
+                return ResultService.Fail<PurchaseDto>("Compra não encontrado");
+
+            var productId = await _productRepository.GetIdByCodErpAsync(purchaseDTO.CodErp);
+            var personId = await _personRepository.GetIdByDocumentAsync(purchaseDTO.Document);
+            purchase.Edit(purchase.Id, productId, personId);
+            await _purchaseRepository.EditAsync(purchase);
+            return ResultService.Ok(purchaseDTO);
+            
+        }
     }
 }

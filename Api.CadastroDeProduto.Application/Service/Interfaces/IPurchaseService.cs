@@ -12,5 +12,7 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
         Task<ResultService<PurchaseDto>> CreateAsync(PurchaseDto purchaseDTO);
         Task<ResultService<PurchaseDetailDto>> GetByIdAsync(int Id);
         Task<ResultService<ICollection<PurchaseDetailDto>>> GetAsync();
+        Task<ResultService<PurchaseDto>> UpdateAsync(PurchaseDto purchaseDTO);
+        Task<ResultService> RemoveAsync(int id);
     }
 }
