@@ -1,4 +1,5 @@
 ﻿using Api.CadastroDeProduto.Application.DTOs;
+using ApiCadastroDeProduto.Domain.FiltersDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace Api.CadastroDeProduto.Application.Service.Interfaces
         
         //Deleta  uma pessoa
         Task<ResultService> DeleteAsync(int id);
+
+        //Método para paginação
+        Task<ResultService<PagedBaseResponseDto<PersonDto>>> GetPagedAsync(PersonFilterDB personFilterDb);
     }
 }

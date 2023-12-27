@@ -1,4 +1,6 @@
-﻿using ApiCadastroDeProduto.Domain.Entities;
+﻿using Api.CadastroDeProduto.Infra.Data.Repositories;
+using ApiCadastroDeProduto.Domain.Entities;
+using ApiCadastroDeProduto.Domain.FiltersDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +29,8 @@ namespace ApiCadastroDeProduto.Domain.Repositories
         Task DeleteAsync(Person person);
 
         Task<int> GetIdByDocumentAsync(string document);
+
+        //Método que busca dados paginados
+        Task<PagedBaseResponse<Person>> GetPagedAsync(PersonFilterDB request);
     }
 }

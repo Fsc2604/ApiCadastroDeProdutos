@@ -2,6 +2,7 @@
 using Api.CadastroDeProduto.Application.Service.Interfaces;
 using Api.CadastroDeProduto.Application.Validations;
 using ApiCadastroDeProduto.Domain.Entities;
+using ApiCadastroDeProduto.Domain.FiltersDB;
 using ApiCadastroDeProduto.Domain.Repositories;
 using AutoMapper;
 using System;
@@ -83,6 +84,13 @@ namespace Api.CadastroDeProduto.Application.Service
 
             await _personRepository.DeleteAsync(person);
             return ResultService.Ok($"Pessoa do id:{id} foi deletada");
+        }
+        /// <summary> Pega os dados paginados e transforma de entidade para DTO/// </summary>    
+        public async Task<ResultService<PagedBaseResponseDto<PersonDto>>> GetPagedAsync(PersonFilterDB personFilterDb)
+        {
+            var peoplePaged = await _personRepository.GetPagedAsync(personFilterDb);
+            var result = new PagedBaseResponseDto<PersonDto>(peoplePaged.TotalRegisters, _mapper.Map<List<PersonDto>>(peoplePaged.Data));
+            return ResultService.Ok(result);
         }
     }
 }

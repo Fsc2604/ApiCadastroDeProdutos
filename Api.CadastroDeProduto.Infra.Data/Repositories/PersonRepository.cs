@@ -1,5 +1,6 @@
 ﻿using Api.CadastroDeProduto.Infra.Data.Context;
 using ApiCadastroDeProduto.Domain.Entities;
+using ApiCadastroDeProduto.Domain.FiltersDB;
 using ApiCadastroDeProduto.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -44,6 +45,18 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
         public async Task<int> GetIdByDocumentAsync(string document)
         {
             return (await _ConnectionDbContext.People.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+        }
+
+        //<summary>Método para paginação</summary> 
+
+        public async Task<PagedBaseResponse<Person>> GetPagedAsync(PersonFilterDB request)
+        {
+            var people = _ConnectionDbContext.People.AsQueryable();
+            if(!string.IsNullOrEmpty(request.Name))
+                people = people.Where(x=> x.Name.Contains(request.Name));
+
+            return await PagedBaseResponseHelper.GetResponseAsync<PagedBaseResponse<Person>, Person>(people, request);
+
         }
 
         public async Task<ICollection<Person>> GetPeopleAsync()

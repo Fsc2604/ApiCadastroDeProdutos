@@ -1,5 +1,6 @@
 ﻿using Api.CadastroDeProduto.Application.DTOs;
 using Api.CadastroDeProduto.Application.Service.Interfaces;
+using ApiCadastroDeProduto.Domain.FiltersDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.CadastroDeProduto.Api.Controllers
@@ -61,6 +62,19 @@ namespace Api.CadastroDeProduto.Api.Controllers
         public async Task<ActionResult> DeleteAsync(int id)
         {
             var result = await _personService.DeleteAsync(id);
+            if (result.IsSucess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        //Controller de Paginação
+
+        [HttpGet]
+        [Route("paged")]
+        public async Task<ActionResult> GetPagedAsync([FromQuery] PersonFilterDB personFilterDb)
+        {
+            var result = await _personService.GetPagedAsync(personFilterDb);
             if (result.IsSucess)
                 return Ok(result);
 
