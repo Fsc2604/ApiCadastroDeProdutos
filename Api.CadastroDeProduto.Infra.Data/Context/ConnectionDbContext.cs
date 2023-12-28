@@ -16,6 +16,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Context
         }
         
         // Indicativo de que as classes Person Product Purchase existem no banco de dados como tabela
+        // Conexao com o banco
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Product{ get; set; }
         public DbSet<Purchase> Purchase{ get; set; }
