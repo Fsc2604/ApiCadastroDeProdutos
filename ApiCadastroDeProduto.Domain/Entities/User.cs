@@ -10,8 +10,8 @@ namespace ApiCadastroDeProduto.Domain.Entities
     public class User
     {   
         public int Id { get; private set; }
-        public string Email { get; private set; }
-        public  string PassWord { get; private set; }
+        public string? Email { get; private set; }
+        public  string? Password { get; private set; }
 
         public User(string email, string password)
         {
@@ -31,7 +31,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
             DomainValidationException.When(string.IsNullOrEmpty(password), "Password deve ser informado!");
 
             Email = email;
-            PassWord = password;
+            Password = password;
         }
     }
 

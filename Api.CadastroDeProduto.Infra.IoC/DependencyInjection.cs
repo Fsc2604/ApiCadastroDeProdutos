@@ -1,8 +1,10 @@
 ﻿using Api.CadastroDeProduto.Application.Mappings;
 using Api.CadastroDeProduto.Application.Service;
 using Api.CadastroDeProduto.Application.Service.Interfaces;
+using Api.CadastroDeProduto.Infra.Data.Authentication;
 using Api.CadastroDeProduto.Infra.Data.Context;
 using Api.CadastroDeProduto.Infra.Data.Repositories;
+using ApiCadastroDeProduto.Domain.Authentication;
 using ApiCadastroDeProduto.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,8 @@ namespace Api.CadastroDeProduto.Infra.IoC
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<IUnityOfWork, UnityOfWork>();
+            services.AddScoped<ITokenGenerator,TokenGenerator>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
@@ -36,6 +40,7 @@ namespace Api.CadastroDeProduto.Infra.IoC
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<IUserService, UserService>();
             return services;           
         }
     }

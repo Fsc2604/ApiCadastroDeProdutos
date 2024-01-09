@@ -20,7 +20,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
         }
         public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
         {
-            return await _connectionDbContext.User.FirstOrDefaultAsync(x => x.Email == email && x.PassWord == password);
+            return await _connectionDbContext.User.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
         }
     }
 }

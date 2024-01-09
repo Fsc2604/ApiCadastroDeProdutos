@@ -1,10 +1,12 @@
 ﻿using Api.CadastroDeProduto.Application.DTOs;
 using Api.CadastroDeProduto.Application.Service.Interfaces;
 using ApiCadastroDeProduto.Domain.FiltersDB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.CadastroDeProduto.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase

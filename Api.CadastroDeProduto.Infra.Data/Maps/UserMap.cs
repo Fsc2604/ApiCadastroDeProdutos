@@ -28,7 +28,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
             builder.Property(u => u.Email)
             .HasColumnName("email");
 
-            builder.Property(u => u.PassWord)
+            builder.Property(u => u.Password)
             .HasColumnName("senha");
             
         }
