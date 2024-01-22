@@ -39,7 +39,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
 
         public async Task<Person> GetByIdAsync(int id)
         {
-            return await _ConnectionDbContext.People.FirstOrDefaultAsync(x => x.Id == id);
+            return await _ConnectionDbContext.People.FirstOrDefaultAsync(x=> x.Id == id);
         }
         /// <summary> Informa o documento da pessoa e retorna o Id. Útil para localizar clientes mais rapido</summary>
         public async Task<int> GetIdByDocumentAsync(string document)

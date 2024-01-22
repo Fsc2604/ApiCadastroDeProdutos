@@ -16,12 +16,14 @@ namespace ApiCadastroDeProduto.Domain.Entities
        
         // Uma pessoa pode  ter mais de uma compra
         public ICollection<Purchase> Purchases { get; private set; }
+        public ICollection<PersonImage> PersonImages { get; private set; }
 
         /// <summary> Construtor para adição de uma pessoa  </summary>
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);
             Purchases  = new List<Purchase>();
+            PersonImages = new List<PersonImage>();
         }
 
         /// <summary> Construtor para edição de uma pessoa </summary>
@@ -33,6 +35,7 @@ namespace ApiCadastroDeProduto.Domain.Entities
 
             Validation(name, document, phone);
             Purchases = new List<Purchase>();
+            PersonImages =  new List <PersonImage>();
 
         }
         /// <summary> Método para validação caso algum atributo esteja vazio < /summary>

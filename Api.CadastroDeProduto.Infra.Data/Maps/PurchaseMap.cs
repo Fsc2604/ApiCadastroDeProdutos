@@ -37,7 +37,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
 
             // Mapeamento/Relacionamento chave primária com chave estrangeira
             // Uma compra só pode ter uma pessoa mas uma pessoa pode ter várias compras
-            // N pra 1
+            // 1 pra N
             builder.HasOne(x => x.Person)
                 .WithMany(p => p.Purchases);
 

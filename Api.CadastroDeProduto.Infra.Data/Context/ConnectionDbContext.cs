@@ -15,12 +15,13 @@ namespace Api.CadastroDeProduto.Infra.Data.Context
 
         }
         
-        // Indicativo de que as classes Person Product Purchase existem no banco de dados como tabela
+        // Indicativo de que as classes Person Product Purchase e demais, existem no banco de dados como tabela
         // Conexao com o banco
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Product{ get; set; }
         public DbSet<Purchase> Purchase{ get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<PersonImage> PersonImages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
