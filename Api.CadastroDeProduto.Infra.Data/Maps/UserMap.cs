@@ -30,6 +30,11 @@ namespace Api.CadastroDeProduto.Infra.Data.Maps
 
             builder.Property(u => u.Password)
             .HasColumnName("senha");
+
+            //N pra 1
+            builder.HasMany(x => x.UserPermissions)
+                   .WithOne(p => p.User)
+                   .HasForeignKey(p => p.UserId);
             
         }
     }

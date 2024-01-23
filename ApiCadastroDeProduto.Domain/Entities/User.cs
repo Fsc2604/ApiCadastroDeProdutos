@@ -13,9 +13,14 @@ namespace ApiCadastroDeProduto.Domain.Entities
         public string? Email { get; private set; }
         public  string? Password { get; private set; }
 
-        public User(string email, string password)
+        public ICollection<UserPermission> UserPermissions { get; private set; }
+
+
+    public User(string email, string password)
         {
             Validation(email, password);
+            UserPermissions = new List<UserPermission>();
+
         }
 
         public User(int id, string email, string password)
@@ -23,7 +28,9 @@ namespace ApiCadastroDeProduto.Domain.Entities
             DomainValidationException.When(id <= 0, "Id deve ser informado" );
             Id = id;
             Validation(email, password);
-                
+            UserPermissions = new List<UserPermission>();
+
+
         }
         private void Validation(string email, string password)
         {

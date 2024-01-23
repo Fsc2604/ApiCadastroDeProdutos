@@ -18,9 +18,11 @@ namespace Api.CadastroDeProduto.Infra.Data.Repositories
         {
             _connectionDbContext = connectionDbContext;
         }
-        public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
+        public async Task<User?> GetUserByEmailAndPasswordAsync(string email, string password)
         {
-            return await _connectionDbContext.User.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
+            return await _connectionDbContext.User
+                .Include(x => x.UserPermissions).ThenInclude(x=> x.Permission)
+                .FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
         }
     }
 }
