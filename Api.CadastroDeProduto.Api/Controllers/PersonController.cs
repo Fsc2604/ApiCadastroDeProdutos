@@ -1,5 +1,6 @@
 ﻿using Api.CadastroDeProduto.Application.DTOs;
 using Api.CadastroDeProduto.Application.Service.Interfaces;
+using ApiCadastroDeProduto.Domain.Authentication;
 using ApiCadastroDeProduto.Domain.FiltersDB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,27 @@ namespace Api.CadastroDeProduto.Api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class PersonController : BaseControllers
     {
         /// <summary> Controller de Pessoa</summary>
 
         private readonly IPersonService _personService;
-        public PersonController(IPersonService personService)
+        private readonly ICurrentUser _currentUser;
+        private List<string> _permissionNedeed = new List<string>() {"Admin"};
+        private readonly List<string> _permissionUser;
+        public PersonController(IPersonService personService, ICurrentUser currentUser)
         {
             _personService = personService;
+            _currentUser = currentUser;
+            _permissionUser =_currentUser?.Permissions?.Split(",")?.ToList() ?? new List<string>();
         }
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] PersonDto personDTO)
+        public async Task<IActionResult> PostAsync([FromBody] PersonDto personDTO)
         {
+            _permissionNedeed.Add("CadastraPessoa");
+            if(!ValidPermission(_permissionUser ,_permissionNedeed))
+            return Forbidden();
+
             var result = await _personService.CreateAsync(personDTO);
             if(result.IsSucess)
                 return Ok(result);
@@ -29,8 +39,12 @@ namespace Api.CadastroDeProduto.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync()
+        public async Task<IActionResult> GetAsync()
         {
+            _permissionNedeed.Add("BuscaPessoa");
+            if (!ValidPermission(_permissionUser, _permissionNedeed))
+                return Forbidden();
+
             var result = await _personService.GetAsync();
             if (result.IsSucess)
                 return Ok(result);
@@ -40,8 +54,12 @@ namespace Api.CadastroDeProduto.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult> GetByIdAsync(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
+            _permissionNedeed.Add("BuscaPessoa");
+            if (!ValidPermission(_permissionUser, _permissionNedeed))
+                return Forbidden();
+
             var result = await _personService.GetByIdAsync(id);
             if (result.IsSucess)
                 return Ok(result);
@@ -50,8 +68,12 @@ namespace Api.CadastroDeProduto.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] PersonDto personDTO)
+        public async Task<IActionResult> UpdateAsync([FromBody] PersonDto personDTO)
         {
+            _permissionNedeed.Add("EditaPessoa");
+            if (!ValidPermission(_permissionUser, _permissionNedeed))
+                return Forbidden();
+
             var result = await _personService.UpdateAsync(personDTO);
             if (result.IsSucess)
                 return Ok(result);
@@ -61,8 +83,12 @@ namespace Api.CadastroDeProduto.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
+            _permissionNedeed.Add("DeletaPessoa");
+            if (!ValidPermission(_permissionUser, _permissionNedeed))
+                return Forbidden();
+
             var result = await _personService.DeleteAsync(id);
             if (result.IsSucess)
                 return Ok(result);

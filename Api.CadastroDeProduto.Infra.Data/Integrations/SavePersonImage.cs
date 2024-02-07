@@ -9,11 +9,11 @@ namespace Api.CadastroDeProduto.Infra.Data.Integrations
 {
     public class SavePersonImage : ISavePersonImage
     {
-        private readonly string _fillePath;
+        private readonly string _filePath;
 
         public SavePersonImage(string filepath)
         {
-            _fillePath = "/Users/User/Desktop/API";
+            _filePath = "/Users/User/Desktop/API";
         }
 
         /// <summary> Método para interpretar qual a extensão do base 64 (png,jpeg,etc) </summary>
@@ -26,12 +26,12 @@ namespace Api.CadastroDeProduto.Infra.Data.Integrations
             var imgBytes = Convert.FromBase64String(base64Code);
 
             var fileName = Guid.NewGuid().ToString() + "." + fileExt;
-            using(var imageFile = new FileStream(_fillePath+"/"+fileName, FileMode.Create))
+            using(var imageFile = new FileStream(_filePath+"/"+fileName, FileMode.Create))
             {
                 imageFile.Write(imgBytes,0,imgBytes.Length);
                 imageFile.Flush();
 
-                return _fillePath+ "/" + fileName;
+                return _filePath+ "/" + fileName;
             }
         }
     }

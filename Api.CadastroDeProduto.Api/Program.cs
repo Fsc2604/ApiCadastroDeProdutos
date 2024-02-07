@@ -1,4 +1,6 @@
+using Api.CadastroDeProduto.Api.Authentication;
 using Api.CadastroDeProduto.Infra.IoC;
+using ApiCadastroDeProduto.Domain.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -50,6 +52,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddInfraStructure(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
 //Faz com que atributos nulos nao apaarecam mais
 builder.Services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; });
