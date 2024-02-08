@@ -11,7 +11,7 @@ namespace Api.CadastroDeProduto.Infra.Data.Integrations
     {
         private readonly string _filePath;
 
-        public SavePersonImage(string filepath)
+        public SavePersonImage()
         {
             _filePath = "/Users/User/Desktop/API";
         }

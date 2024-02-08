@@ -3,15 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiCadastroDeProduto.Domain", "ApiCadastroDeProduto.Domain\ApiCadastroDeProduto.Domain.csproj", "{1B8A4DDA-62B0-4FD4-937C-0103243D2AB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCadastroDeProduto.Domain", "ApiCadastroDeProduto.Domain\ApiCadastroDeProduto.Domain.csproj", "{1B8A4DDA-62B0-4FD4-937C-0103243D2AB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CadastroDeProduto.Infra.Data", "Api.CadastroDeProduto.Infra.Data\Api.CadastroDeProduto.Infra.Data.csproj", "{724BCE8B-66B5-4BC1-80A4-1301066F6450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CadastroDeProduto.Infra.Data", "Api.CadastroDeProduto.Infra.Data\Api.CadastroDeProduto.Infra.Data.csproj", "{724BCE8B-66B5-4BC1-80A4-1301066F6450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CadastroDeProduto.Application", "Api.CadastroDeProduto.Application\Api.CadastroDeProduto.Application.csproj", "{673522BE-123A-4352-BAE7-8C30052B03A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CadastroDeProduto.Application", "Api.CadastroDeProduto.Application\Api.CadastroDeProduto.Application.csproj", "{673522BE-123A-4352-BAE7-8C30052B03A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CadastroDeProduto.Infra.IoC", "Api.CadastroDeProduto.Infra.IoC\Api.CadastroDeProduto.Infra.IoC.csproj", "{D31D2735-12E1-4214-B935-6377ED5F689A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CadastroDeProduto.Infra.IoC", "Api.CadastroDeProduto.Infra.IoC\Api.CadastroDeProduto.Infra.IoC.csproj", "{D31D2735-12E1-4214-B935-6377ED5F689A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CadastroDeProduto.Api", "Api.CadastroDeProduto.Api\Api.CadastroDeProduto.Api.csproj", "{A8C74ECF-9850-413C-8F59-B5CBF70548A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.CadastroDeProduto.Api", "Api.CadastroDeProduto.Api\Api.CadastroDeProduto.Api.csproj", "{A8C74ECF-9850-413C-8F59-B5CBF70548A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CadastroDeProduto.Teste", "Api.CadastroDeProduto.Teste\Api.CadastroDeProduto.Teste.csproj", "{0D77B1C7-8177-44A5-8817-380ECF5150B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{724BCE8B-66B5-4BC1-80A4-1301066F6450} = {724BCE8B-66B5-4BC1-80A4-1301066F6450}
+		{673522BE-123A-4352-BAE7-8C30052B03A4} = {673522BE-123A-4352-BAE7-8C30052B03A4}
+		{1B8A4DDA-62B0-4FD4-937C-0103243D2AB1} = {1B8A4DDA-62B0-4FD4-937C-0103243D2AB1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,10 @@ Global
 		{A8C74ECF-9850-413C-8F59-B5CBF70548A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C74ECF-9850-413C-8F59-B5CBF70548A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C74ECF-9850-413C-8F59-B5CBF70548A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D77B1C7-8177-44A5-8817-380ECF5150B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D77B1C7-8177-44A5-8817-380ECF5150B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D77B1C7-8177-44A5-8817-380ECF5150B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D77B1C7-8177-44A5-8817-380ECF5150B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
