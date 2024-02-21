@@ -25,6 +25,13 @@ namespace ApiCadastroDeProduto.Domain.Entities
  
         }
 
+        public void Edita(string name, string codErp, decimal price)
+        {
+            Validation(name, codErp, price);
+            
+
+        }
+
         /// <summary> Construtor para edição de uma produto </summary>
         public Product(int id, string name, string codErp, decimal price)
         {
