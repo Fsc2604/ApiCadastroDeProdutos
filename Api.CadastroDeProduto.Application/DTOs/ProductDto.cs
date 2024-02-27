@@ -8,9 +8,9 @@ namespace Api.CadastroDeProduto.Application.DTOs
 {
     public class ProductDto
     {
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string CodErp { get; private set; }
-        public decimal Price { get; private set; }
+        public int Id { get;  set; }
+        public string Name { get;  set; }
+        public string CodErp { get;  set; }
+        public decimal Price { get;  set; }
     }
 }
