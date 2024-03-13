@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,10 +24,15 @@ namespace Api.CadastroDeProduto.Infra.Data.Authentication
                 new Claim("Permissoes", permission)
             };
 
-            var expires = DateTime.Now.AddDays(1);
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CadastProd"));
+            var expires = DateTime.Now.AddDays(4);         
+
+            // Criar um objeto SymmetricSecurityKey com a nova chave
+            byte[] key = (Encoding.UTF8.GetBytes("CadastroDeProduto"));
+            
+            var keyReady = new SymmetricSecurityKey(key);
+       
             var tokenData = new JwtSecurityToken(
-                signingCredentials: new SigningCredentials(key,SecurityAlgorithms.HmacSha256Signature),
+                signingCredentials: new SigningCredentials(keyReady,SecurityAlgorithms.HmacSha256Signature),
                 expires: expires,
                 claims: claims);
 

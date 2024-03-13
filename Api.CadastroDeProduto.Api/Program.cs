@@ -61,7 +61,10 @@ builder.Services.AddMvc().AddJsonOptions(options => { options.JsonSerializerOpti
 
 
 // Implementação do Token
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CadastProd"));
+byte[] keyBytes  = Encoding.UTF8.GetBytes("CadastroDeProduto");
+
+var key = new SymmetricSecurityKey(keyBytes);
+
 builder.Services.AddAuthentication(authOptions =>
 {
     authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,7 +78,7 @@ builder.Services.AddAuthentication(authOptions =>
         ValidateLifetime = true,
         IssuerSigningKey = key,
         ValidateAudience = false,
-        ValidateIssuer = false,
+        ValidateIssuer = false,   
     };
 });
 
